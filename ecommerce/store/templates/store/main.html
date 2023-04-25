@@ -20,10 +20,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
       </li>
-
     </ul>
+    <form class="d-flex" role="search" action="{% url 'buscar' %}">
+      <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="busqueda">
+      <button class="btn btn-success" type="submit">Buscar</button>
+    </form>
     <div class="form-inline my-2 my-lg-0">
-     	<a href="#"class="btn btn-warning">Login</a>
+     	<a href="{% url 'cerrarSesion' %}"class="btn btn-warning">Cerrar Sesion</a>
 
      	<a href="{% url 'cart' %}">
     		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
@@ -32,6 +35,7 @@
 
     </div>
   </div>
+   <span><a href="{% url 'cerrarSesion' %}"></a></span>
 </nav>
 
 
