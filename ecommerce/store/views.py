@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .form import UserRegisterForm
 from django.contrib.auth import authenticate , login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Product
 
@@ -28,14 +29,14 @@ def iniciarSesion(request):
         if user is not None:
             login(request, user)
             return redirect('store')
-    context={}
-    return render(request, 'store/iniciarSesion.html', context )
+    
+    return render(request, 'store/iniciarSesion.html' )
 
 def logoutUser(request):
     logout(request)
     return redirect('iniciarSesion')
     
-
+@login_required(login_url='iniciarSesion')
 def store(request):
     products = Product.objects.all()
     context = {'products':products}
